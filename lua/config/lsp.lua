@@ -15,6 +15,7 @@ require('mason-lspconfig').setup({
     'jdtls',
     'ts_ls',
     'eslint',
+    'intelephense',
   },
   handlers = {
     lsp_zero.default_setup,
