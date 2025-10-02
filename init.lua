@@ -61,8 +61,26 @@ require("lazy").setup({
     priority = 1000,
     opts = {},
   },
+
+  -- LSP Configuration
+  { "neovim/nvim-lspconfig" },
+  { "VonHeikemen/lsp-zero.nvim", branch = "v3.x" },
+  -- LSP Installer
+  {
+    "williamboman/mason.nvim",
+    config = true,
+  },
+  { "williamboman/mason-lspconfig.nvim" },
+
+  -- Autocompletion
+  { "hrsh7th/nvim-cmp" },
+  { "hrsh7th/cmp-nvim-lsp" },
+  { "L3MON4D3/LuaSnip" },
+  { "saadparwaiz1/cmp_luasnip" },
 })
 
+require("config.lsp")
+require("config.cmp")
 vim.cmd('colorscheme tokyonight')
 
 -- Basic Neovim settings
