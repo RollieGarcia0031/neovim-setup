@@ -77,6 +77,13 @@ require("lazy").setup({
   { "hrsh7th/cmp-nvim-lsp" },
   { "L3MON4D3/LuaSnip" },
   { "saadparwaiz1/cmp_luasnip" },
+
+  -- Indent Blankline
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    opts = {},
+  },
 })
 
 require("config.lsp")
@@ -120,3 +127,20 @@ vim.diagnostic.config({
   --   prefix = "",
   -- },
 })
+
+-- Custom command to set tab amount
+vim.api.nvim_create_user_command(
+  'SetTabAmount',
+  function(opts)
+    local amount = tonumber(opts.fargs[1])
+    if amount then
+      vim.opt.tabstop = amount
+      vim.opt.shiftwidth = amount
+      vim.opt.expandtab = true
+      print("Tab amount set to " .. amount)
+    else
+      print("Usage: :setTabsAmount <number>")
+    end
+  end,
+  { nargs = 1, complete = "custom,v:lua.require'your_module'.complete_tab_amount" }
+)
