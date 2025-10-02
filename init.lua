@@ -104,3 +104,19 @@ vim.keymap.set("n", "<leader>t", ":terminal<CR>", { desc = "Open terminal" })
 vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Save file" })
 vim.keymap.set("n", "<leader>q", ":q<CR>", { desc = "Quit" })
 vim.keymap.set("n", "<leader>r", ":!./run.sh<CR>", { desc = "Run script" })
+
+-- Enable virtual text for diagnostics
+vim.diagnostic.config({
+  virtual_text = true,
+  -- You can also configure other options here, for example:
+  -- signs = true,
+  -- update_in_insert = false,
+  -- float = {
+  --   focusable = false,
+  --   style = "minimal",
+  --   border = "rounded",
+  --   source = "always",
+  --   header = "",
+  --   prefix = "",
+  -- },
+})

@@ -13,9 +13,21 @@ require('mason-lspconfig').setup({
   --  https://github.com/williamboman/mason-lspconfig.nvim#available-servers
   ensure_installed = {
     'jdtls',
+    'ts_ls',
+    'eslint',
   },
   handlers = {
     lsp_zero.default_setup,
+    -- Configure ts_ls to start automatically for projects with package.json
+    function(server_name)
+      if server_name == "ts_ls" then
+        require('lspconfig')[server_name].setup({
+          root_dir = require('lspconfig.util').root_pattern('package.json', '.git'),
+        })
+      else
+        lsp_zero.default_setup()
+      end
+    end,
   },
 })
 
