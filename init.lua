@@ -33,7 +33,8 @@ require("lazy").setup({
           group_empty = true,
         },
         filters = {
-          dotfiles = true,
+          dotfiles = false, -- Set to false to show hidden files (starting with .)
+          git_ignored = false, -- Set to false to show git ignored files
         },
       })
       vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
@@ -50,6 +51,7 @@ require("lazy").setup({
       require("telescope").setup({
         defaults = {
           file_ignore_patterns = { "node_modules/", "vendor/", "%.class" },
+          hidden = true,
         },
       })
       vim.keymap.set("n", "<leader>f", builtin.find_files, { desc = "Find files" })
