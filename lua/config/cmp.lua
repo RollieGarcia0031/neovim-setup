@@ -16,8 +16,17 @@ cmp.setup({
   }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
-    { name = 'luasnip' }, -- For luasnip users. 
+    { name = 'luasnip' }, -- For luasnip users.
+    { name = 'path' }, -- Add path completion
   }, {
     { name = 'buffer' },
-  })
+  }),
+  window = {
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
+  },
 })
+
+cmp.setup.cmdline('/', { sources = { { name = 'buffer' } } })
+cmp.setup.cmdline(':', { sources = cmp.config.sources({ { name = 'path' } }, { { name = 'cmdline' } }) })
+
