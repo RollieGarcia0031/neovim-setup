@@ -186,7 +186,7 @@ vim.diagnostic.config({
   -- },
 })
 
--- Custom command to set tab amount
+  -- Custom command to set tab amount
 vim.api.nvim_create_user_command(
   'SetTabAmount',
   function(opts)
@@ -202,3 +202,14 @@ vim.api.nvim_create_user_command(
   end,
   { nargs = 1, complete = "custom,v:lua.require'your_module'.complete_tab_amount" }
 )
+
+-- Set tab settings for specific file types
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "html", "typescriptreact", "javascriptreact" },
+  callback = function()
+    vim.opt.tabstop = 2
+    vim.opt.shiftwidth = 2
+    vim.opt.expandtab = true
+  end,
+  group = vim.api.nvim_create_augroup("CustomTabSettings", { clear = true }),
+})
