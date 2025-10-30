@@ -16,6 +16,9 @@ require('mason-lspconfig').setup({
     'ts_ls',
     'eslint',
     'intelephense',
+    'tailwindcss',
+    'html',
+    'cssls',
   },
   handlers = {
     lsp_zero.default_setup,
@@ -24,6 +27,21 @@ require('mason-lspconfig').setup({
       if server_name == "ts_ls" then
         require('lspconfig')[server_name].setup({
           root_dir = require('lspconfig.util').root_pattern('package.json', '.git'),
+        })
+      elseif server_name == "tailwindcss" then
+        require('lspconfig')[server_name].setup({
+          files = { "tailwind.config.js", "postcss.config.js" },
+          settings = {
+            tailwindCSS = {
+              userLanguages = {
+                html = "html",
+                javascript = "javascript",
+                typescript = "typescript",
+                javascriptreact = "javascriptreact",
+                typescriptreact = "typescriptreact",
+              },
+            },
+          },
         })
       else
         lsp_zero.default_setup()
