@@ -92,6 +92,23 @@ require("lazy").setup({
     opts = {},
   },
 
+  -- Treesitter
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        ensure_installed = { "markdown", "lua", "vim" }, -- Install markdown and other common parsers
+        highlight = {
+          enable = true, -- Enable syntax highlighting
+        },
+        indent = {
+          enable = true, -- Enable Treesitter-based indentation
+        },
+      })
+    end,
+  },
+
   -- Statusline
   {
     "nvim-lualine/lualine.nvim",
@@ -139,6 +156,20 @@ require("lazy").setup({
         tabline = {},
         winbar = {},
         extensions = {},
+      })
+    end,
+  },
+
+  -- REST Client
+  {
+    "rest-nvim/rest.nvim",
+    ft = { "http", "rest" },
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("rest-nvim").setup({
+        -- Configuration options go here
+        -- For example, to set a keymap for running requests:
+        -- vim.keymap.set("n", "<leader>rr", "<Plug>RestRun", { desc = "Run REST request" }),
       })
     end,
   },
